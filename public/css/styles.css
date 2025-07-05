@@ -15,7 +15,20 @@ body{
   background-image: url('../images/site/small_check.jpg');
   background-repeat: repeat;
   background-size: 100%;
+  animation: fadeInPage 1.2s ease;
 }
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 #wrapper {
   width: 100%;
   max-width: 1300px;
@@ -24,7 +37,20 @@ body{
   background-color: #fffefe;
   border: blue solid;
   border-radius: 10px;
+  animation: fadeInContent 1.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 #top-header{
   display: flex;
   justify-content: space-between;
@@ -88,43 +114,93 @@ nav ul li:hover{
   font-size: 18px;
   margin-top: 30px;
 }
-#info{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 20px;
-  position: relative;
-  bottom: 80px;
+#cs-btn:hover{
+  background-color: #555;
+  cursor: pointer;
 }
-.imag-main{
+#car-main-info{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+}
+.banner-im{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  align-items: center;
-  
+  margin-bottom: 20px;
+
 }
-.img-gal{
-  
-  width: 300px;
-  height: 100px;
-  background-color: blue;
-  margin-bottom: 50px;
+.image-1{
+  width: 48%;
+  background-color: rgb(249, 246, 246);
+  margin-bottom: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  border-radius: 10px;
+  background: #fff;
+  transition: box-shadow 0.3s, transform 0.3s;
+  animation: fadeInCard 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
 }
 
-.img-gal figure{
-  width: 200px;
-  margin: 20px;
-  margin-left: 60px;
+.image-1:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+  transform: translateY(-6px) scale(1.03);
+  background: #f5f7fa;
+  animation: bounceCard 0.5s;
+}
+
+@keyframes fadeInCard {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes bounceCard {
+  0% {
+    transform: translateY(0) scale(1.03);
+  }
+  30% {
+    transform: translateY(-8px) scale(1.06);
+  }
+  60% {
+    transform: translateY(2px) scale(1.01);
+  }
+  100% {
+    transform: translateY(0) scale(1.03);
+  }
+}
+
+.image-1 img{
+  width: 50%;
+  height: auto;
+  border-radius: 10px;
+  margin-left: 30%;
+}
+.image-1 p{
+  background-color: rgb(251, 251, 251);
+  padding: 10px;
   text-align: center;
-
 }
-figcaption{
-  margin-top: 30px;
+.car-info h2,.banners h2{
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 30px;
 }
-.cnt-info{
-  padding-left: 35px;
-  line-height: 40px;
+.car-info ul li{
   font-size: 20px;
-}
+  line-height: 30px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+} 
+
+  
+
+  
+
 
 @media (max-width: 720px){
   body{
@@ -159,9 +235,9 @@ figcaption{
   .img-gal figure{
     width: 100px;
   }
-  .car-statement p{
+  /* .car-statement p{
     display: none;
-  }
+  } */
   .siteName a, #tools a{
   text-decoration: none;
   color:#333;
@@ -177,4 +253,16 @@ figcaption{
     z-index: 1;
     font-size: 15px;
   }
+  .car-statement{
+    width: 50%;
+    height: 160px;
+    position: absolute; 
+    top: 36%;
+    line-height: 20px;
+    left: 10%;
+    background-color: rgba(32, 32, 31, 0.556);
+    color: white;
+    
+  }
+  
 }
