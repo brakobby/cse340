@@ -43,7 +43,7 @@ const host = process.env.HOST
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-app.listen(port, host, () => {
-  console.log(`app listening on http://${host}:${port}`)
+app.listen(port, () => {
+  console.log(`app listening on ${host}:${port}`)
 })
 
