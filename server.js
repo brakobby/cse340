@@ -5,6 +5,8 @@
 /* ***********************
  * Require Statements
  *************************/
+
+
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
@@ -29,6 +31,8 @@ app.get("/", function(req, res){
   res.render("index", {title: "Home"})
 })
 
+
+
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file
@@ -39,6 +43,7 @@ const host = process.env.HOST
 /* ***********************
  * Log statement to confirm server operation
  *************************/
-app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`)
+app.listen(port, host, () => {
+  console.log(`app listening on http://${host}:${port}`)
 })
+

@@ -1,6 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body{
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  background-image: url('../images/site/small_check.jpg');
+  background-repeat: repeat;
+  background-size: 100%;
+}
+#wrapper {
+  width: 100%;
+  max-width: 1300px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fffefe;
+  border: blue solid;
+  border-radius: 10px;
+}
+#top-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 20px;
+  font-size: 30px;
+
+}
+.siteName a, #tools a{
+  text-decoration: none;
+  color:#333;
+}
+nav ul{
+  display: flex;
+  justify-content: space-around;
+  gap: 2px;
+  list-style: none;
+  font-size: 18px;
+  background-color: #333;
+  padding: 15px;
+  color: white;
+
+}
+nav ul li{
+  padding: 15px;
+
+}
+nav ul li:hover{
+  background-color: white;
+  color: #333;
+}
+.car img{
+  width: 100%;
+  height: auto;
+  position: sticky;
+}
+#welcome{
+  position: absolute;
+  top: 40%;
+  font-size: 40px;
+  margin-left: 50px;
+  
+}
+.car-statement{
+  width: 30%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  background-color: #eae4e475;
+  left: 15%;
+  font-size: 20px;
+  line-height: 40px;
+  padding: 10px;
+  font-size: 25px;
+}
+#cs-btn{
+  width: 100%;
+  padding: 15px;
+  background-color: #333;
+  color: white;
+  font-size: 18px;
+  margin-top: 30px;
+}
+#info{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px;
+  position: relative;
+  bottom: 80px;
+}
+.imag-main{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  
+}
+.img-gal{
+  
+  width: 300px;
+  height: 100px;
+  background-color: blue;
+  margin-bottom: 50px;
+}
+
+.img-gal figure{
+  width: 200px;
+  margin: 20px;
+  margin-left: 60px;
+  text-align: center;
+
+}
+figcaption{
+  margin-top: 30px;
+}
+.cnt-info{
+  padding-left: 35px;
+  line-height: 40px;
+  font-size: 20px;
+}
+
+@media (max-width: 720px){
+  body{
+    background-image: none;
+  }
+  #info{
+  display: grid;
+  grid-template-columns: 1fr;
+  }
+  .car-statement{
+    font-size: 15px;
+    line-height: 25px;
+    height: 40px;
+  }
+  #cs-btn{
+    padding: 0px;
+    margin: 0px;
+  }
+  #welcome{
+      bottom:90px;
+      font-size: 25px;
+      font-weight: bold;
+  }
+  .imag-main{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+
+}
+@media (max-width: 480px){
+  .img-gal figure{
+    width: 100px;
+  }
+  .car-statement p{
+    display: none;
+  }
+  .siteName a, #tools a{
+  text-decoration: none;
+  color:#333;
+  font-size: 15px;
+  }
+  #wrapper{
+    border: none;
+    padding: 0px;
+  }
+  #welcome{
+    position: absolute;
+    top: 32%;
+    z-index: 1;
+    font-size: 15px;
+  }
 }
