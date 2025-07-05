@@ -210,11 +210,7 @@ nav ul li:hover{
   display: grid;
   grid-template-columns: 1fr;
   }
-  .car-statement{
-    font-size: 15px;
-    line-height: 25px;
-    height: 40px;
-  }
+
   #cs-btn{
     padding: 0px;
     margin: 0px;
@@ -227,6 +223,22 @@ nav ul li:hover{
   .imag-main{
     display: grid;
     grid-template-columns: 1fr;
+  }
+  .car-statement{
+    width: 50%;
+    height: 160px;
+    position: absolute; 
+    top: 49%;
+    line-height: 20px;
+    left: 10%;
+    background-color: rgba(32, 32, 31, 0.556);
+    color: white;
+    font-size: 15px;
+    
+  }
+  #wrapper{
+    border: none;
+    padding: 0px;
   }
 
 
