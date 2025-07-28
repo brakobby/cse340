@@ -1,9 +1,9 @@
-<% if <title> { %>
+<% if (title) { %>
 <h1><%= title %></h1>
 <%} else {
     res.redirect('/')
 } %>
 
-<% #Messages() %>
+<%# Messages() %>
 
 <%- grid %>
