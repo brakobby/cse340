@@ -46,16 +46,6 @@ const port = process.env.PORT
 const host = process.env.HOST
 
 
-app.use(async (req, res) => {
-  let nav = await utilities.getNav();
-  res.status(404).render("errors/error", {
-    title: "404 - Page Not Found",
-    message: "Sorry, the page you requested does not exist.",
-    nav
-  });
-});
-
-
 /* ***********************
  *Express Error Handler
  *Place after all other middleware
