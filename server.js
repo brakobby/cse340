@@ -14,7 +14,10 @@ const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
+const utilities = require("./utilities/");
 
+
+app.use(express.static("public"));
 
 /* ***********************
  * View engine and Templates
@@ -42,13 +45,24 @@ app.use("/inv", inventoryRoute)
 const port = process.env.PORT
 const host = process.env.HOST
 
+
+app.use(async (req, res) => {
+  let nav = await utilities.getNav();
+  res.status(404).render("errors/error", {
+    title: "404 - Page Not Found",
+    message: "Sorry, the page you requested does not exist.",
+    nav
+  });
+});
+
+
 /* ***********************
  *Express Error Handler
  *Place after all other middleware
  * ********************** */
 app.use(async(err, req, res, next) => {
   let nav = await utilities.getNav();
-  console.error(`Error at:"${req.originalURL}":${err.message}`);
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message: err.message,
