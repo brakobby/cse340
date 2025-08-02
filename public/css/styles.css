@@ -333,6 +333,12 @@ nav ul li a:hover{
     color: white;
     
   }
+  nav ul{
+    font-size: 8px;
+    font-weight: bold;
+    gap: none;
+    justify-content: space-between;
+  }
   
 }
 
