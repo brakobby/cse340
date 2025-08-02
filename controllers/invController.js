@@ -19,5 +19,24 @@ invCont.buildByClassificationId = async function (req, res, next){
         grid,
     })
 }
+/* ************************************
+ * building the buildDetailView
+ * ********************************** */
+invCont.buildDetailView = async function (req, res, next){
+    try{
+        const invId = req.params.inv_id;
+        const data = await invModel.getInventoryById(invId);
+        const detail = await utilities.buildDetailHTML(data);
+        const nav =await utilities.getNav();
+        const title = `${data.inv_year} ${data.inv_make} ${data.inv_model}`;
+        res.render("./inventory/detail", {
+            title,
+            nav, 
+            detail
+        });
+    }catch(error){
+        next(error);
+    }
+};
 
 module.exports = invCont;

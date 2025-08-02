@@ -335,3 +335,44 @@ nav ul li a:hover{
   }
   
 }
+
+.vehicle-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.vehicle-image, .vehicle-info {
+  flex: 1 1 100%;
+}
+.vehicle-image img {
+  max-width: 100%;
+  height: auto;
+}
+@media(min-width: 768px) {
+  .vehicle-image, .vehicle-info {
+    flex: 1 1 45%;
+  }
+}
+.site-footer {
+  background-color: #1e1e2f;
+  color: #fff;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.footer-link {
+  color: #4fc3f7;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
