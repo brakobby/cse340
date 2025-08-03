@@ -10,9 +10,17 @@
     </div>
   <% } %>
 
+  <% if (errors) { %>
+        <ul class="validation-errors">
+            <% errors.array().forEach(function(error) { %>
+            <li><%= error.msg %></li>
+            <% }) %>
+        </ul>
+    <% } %>
+
   <form class="login-form" action="/account/login" method="post">
     <label for="email">Email address</label>
-    <input type="email" name="email" id="email" required>
+    <input type="email" name="email" id="email" required value="<%= account-email %>">
 
     <label for="password">Password</label>
     <input type="password" name="password" id="password" required>

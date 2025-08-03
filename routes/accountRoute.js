@@ -8,6 +8,10 @@ const regValidate = require("../utilities/account-validation")
  * Route to Login Page
  *************************/
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
+router.post("/login", regValidate.loginRules(), regValidate.checkLoginData, (req, res) => {
+    res.status(200).send('login process')
+}
+)
 
 /* ***********************
  * Route to Register Page
