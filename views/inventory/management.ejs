@@ -1,0 +1,11 @@
+
+<div class="management-container">
+    <h1>Inventory Management</h1>
+    <% if (messages.notice) { %>
+        <p class="notice"><%= messages.notice %></p>
+    <% } %>
+    <div class="management-links">
+        <a href="/inv/add-classification" class="btn">Add New Classification</a>
+        <a href="/inv/add-inventory" class="btn">Add New Inventory</a>
+    </div>
+</div>

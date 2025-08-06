@@ -54,6 +54,7 @@ validate.registrationRules = () => {
 
     ]
 }
+
 /* ***********************************************************
  * Login Data Validation Rule
  * ********************************************************* */
@@ -81,10 +82,10 @@ validate.loginRules = () => {
     ]
 }
  
-
 /* ************************************************************************************************
  * check data and return errors or continue with to register
  * ********************************************************************************************** */
+
 validate.checkRegData = async (req, res, next) => {
     const { account_firstname, account_lastname, account_email } = req.body;
     let errors = [];
@@ -99,6 +100,7 @@ validate.checkRegData = async (req, res, next) => {
             account_lastname,
             account_email,
         })
+
         return
     }
 
@@ -122,6 +124,8 @@ validate.checkLoginData = async(req, res, next) => {
         })
         return
     }
+    
+    next()
 }
 
-module.exports = validate
+module.exports = validate;
