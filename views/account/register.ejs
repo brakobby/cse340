@@ -22,16 +22,16 @@
 
     <form action="/account/register" method="post" class="auth-form">
         <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName" required value="<%= locals.account_fistname %>">
+        <input type="text" id="account_firstname" name="account_firstname" required value="<%= locals.account_fistname %>">
 
         <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName" required value="<%= locals.account_lastname %>">
+        <input type="text" id="account_lastname" name="account_lastname" required value="<%= locals.account_lastname %>">
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required value="<%= locals.account_email %>">
+        <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>">
 
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+        <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
     title="Password must be at least 12 characters and include an uppercase letter, lowercase letter, number, and special character.">
 
         <button type="submit">Create Account</button>

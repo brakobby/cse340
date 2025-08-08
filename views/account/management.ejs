@@ -1,0 +1,20 @@
+<div class="account-management">
+  <h1>Account Management</h1>
+  
+  <!-- Flash Messages -->
+  <% if (messages.notice) { %>
+    <div class="flash-notice">
+      <p><%= messages.notice %></p>
+    </div>
+  <% } %>
+
+  <!-- Welcome Message (Sanitized) -->
+  <div class="welcome-message">
+    <p>Welcome <strong><%= locals.accountData.account_firstname %></strong>!</p>
+    <p>Email: <strong><%= locals.accountData.account_email %></strong></p>
+  </div>
+
+  
+
+  
+</div>
