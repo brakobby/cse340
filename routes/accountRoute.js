@@ -3,6 +3,7 @@ const router = new express.Router()
 const accountController = require("../controllers/accountController")
 const utilities = require("../utilities/")
 const regValidate = require("../utilities/account-validation")
+const invController = require("../controllers/invController")
 
 /* ***********************
  * Route to Login Page
@@ -19,9 +20,14 @@ router.post('/register', regValidate.registrationRules(), regValidate.checkRegDa
 
 
 /* ***********************
+ * Route to inventory management
+ *************************/
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+/* ***********************
  * Route to Management Page
  *************************/
-router.get("/", utilities.handleErrors(accountController.buildManagement));
+router.get("/", utilities.checkJWTToken, utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
 
 /* ***********************
  * Export the Router

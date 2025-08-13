@@ -58,10 +58,12 @@ invCont.buildDetailView = async function (req, res, next){
 
 invCont.buildManagement = async function (req, res, next) {
     let nav = await utilities.getNav()
+    const classificationSelect = await utilities.buildClassificationList()
     res.render("inventory/management", {
         title: "Inventory Management",
         nav,
         errors: null,
+        classificationSelect: classificationSelect
     })
 };
 
@@ -168,5 +170,27 @@ invCont.addInventory = async function (req, res, next) {
             ...req.body
         });
     }
+}
+
+/* ***************************
+ * Return Inventory by Classification As JSON
+ * ************************** */
+invCont.getInventoryJSON = async (req, res, next) => {
+  try {
+    const classification_id = parseInt(req.params.classification_id);
+    console.log(`Fetching inventory for classification ID: ${classification_id}`); // Debug
+    
+    const invData = await invModel.getInventoryByClassificationId(classification_id);
+    console.log("Inventory data:", invData); // Debug
+    
+    if (invData.length > 0) {
+      return res.json(invData);
+    } else {
+      return res.json([]); // Return empty array if no data
+    }
+  } catch (error) {
+    console.error("Error in getInventoryJSON:", error);
+    next(error);
+  }
 }
 module.exports = invCont;
