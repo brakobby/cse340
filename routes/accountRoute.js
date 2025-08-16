@@ -1,33 +1,63 @@
-const express = require("express")
-const router = new express.Router()
-const accountController = require("../controllers/accountController")
-const utilities = require("../utilities/")
-const regValidate = require("../utilities/account-validation")
-const invController = require("../controllers/invController")
+// routes/accountRoute.js
+const express = require("express");
+const router = new express.Router();
+const accountController = require("../controllers/accountController");
+const utilities = require("../utilities");
+const accountValidate = require("../utilities/account-validation");
 
-/* ***********************
- * Route to Login Page
- *************************/
-router.get("/login", utilities.handleErrors(accountController.buildLogin))
-router.post("/login", regValidate.loginRules(), regValidate.checkLoginData,utilities.handleErrors(accountController.accountLogin))
-
-
-/* ***********************
- * Route to Register Page
- *************************/
+// Login/Register
+router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
-router.post('/register', regValidate.registrationRules(), regValidate.checkRegData, utilities.handleErrors(accountController.registerAccount));
 
+router.post(
+  "/register",
+  accountValidate.registrationRules(),
+  accountValidate.checkRegData,
+  utilities.handleErrors(accountController.registerAccount)
+);
 
-/* ***********************
- * Route to inventory management
- *************************/
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+router.post(
+  "/login",
+  accountValidate.loginRules(),
+  accountValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
+);
 
-/* ***********************
- * Route to Management Page
- *************************/
-router.get("/", utilities.checkJWTToken, utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
+router.get(
+  "/",
+  utilities.checkJWTToken,
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildManagement)
+);
+
+// Logout
+router.get("/logout", utilities.handleErrors(accountController.accountLogout));
+
+// Update view (must be logged in)
+router.get(
+  "/update",
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildUpdateView)
+);
+
+// Process account info update
+router.post(
+  "/update/info",
+  utilities.checkLogin,
+  accountValidate.accountUpdateRules(),
+  accountValidate.checkAccountUpdateData,
+  utilities.handleErrors(accountController.updateAccountInfo)
+);
+
+// Process password update
+router.post(
+  "/update/password",
+  utilities.checkLogin,
+  accountValidate.passwordUpdateRules(),
+  accountValidate.checkPasswordUpdateData,
+  utilities.handleErrors(accountController.updatePassword)
+);
+
 
 /* ***********************
  * Export the Router

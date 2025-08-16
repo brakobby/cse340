@@ -128,4 +128,81 @@ validate.checkLoginData = async(req, res, next) => {
     next()
 }
 
+
+validate.accountUpdateRules = () => {
+  return [
+    body("account_firstname").trim().escape().notEmpty().isLength({ min: 2 }).withMessage("Please provide a valid first name."),
+    body("account_lastname").trim().escape().notEmpty().isLength({ min: 2 }).withMessage("Please provide a valid last name."),
+    body("account_email")
+      .trim()
+      .notEmpty()
+      .isEmail()
+      .normalizeEmail()
+      .withMessage("A valid email is required.")
+      .custom(async (value, { req }) => {
+        // Only fail if email belongs to a different account
+        const existing = await accountModel.getAccountByEmail(value);
+        if (existing && String(existing.account_id) !== String(req.body.account_id)) {
+          throw new Error("Email already in use by another account.");
+        }
+      }),
+  ];
+};
+
+validate.checkAccountUpdateData = async (req, res, next) => {
+  const errors = validationResult(req);
+  const nav = await utilities.getNav();
+  if (!errors.isEmpty()) {
+    return res.status(400).render("account/update", {
+      title: "Update Account",
+      nav,
+      errors: errors.array(),
+      // sticky values
+      account_firstname: req.body.account_firstname,
+      account_lastname: req.body.account_lastname,
+      account_email: req.body.account_email,
+      account_id: req.body.account_id,
+    });
+  }
+  next();
+};
+
+/* Password update rules */
+validate.passwordUpdateRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ];
+};
+
+validate.checkPasswordUpdateData = async (req, res, next) => {
+  const errors = validationResult(req);
+  const nav = await utilities.getNav();
+  if (!errors.isEmpty()) {
+    // Re-fill the account info for the view
+    const account = await accountModel.getAccountById(req.body.account_id);
+    return res.status(400).render("account/update", {
+      title: "Update Account",
+      nav,
+      errors: errors.array(),
+      account_firstname: account?.account_firstname,
+      account_lastname: account?.account_lastname,
+      account_email: account?.account_email,
+      account_id: req.body.account_id,
+    });
+  }
+  next();
+};
+
+
+
 module.exports = validate;

@@ -980,3 +980,748 @@ box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 #inventoryDisplay a:hover {
   text-decoration: underline;
 }
+
+
+.management-container { max-width: 800px; margin: auto; padding: 20px; }
+.management-actions { margin-bottom: 20px; }
+.management-actions .btn { margin-right: 10px; }
+.inventory-form label { display: block; margin-top: 10px; font-weight: bold; }
+.inventory-form input, .inventory-form textarea, .inventory-form select {
+  width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box;
+}
+.form-actions { margin-top: 20px; }
+.form-actions .btn { margin-right: 10px; }
+.error-messages { background: #fdd; padding: 10px; margin-bottom: 15px; border: 1px solid #f99; }
+.error-messages ul { margin: 0; padding-left: 20px; }
+
+
+/* Account Update Container */
+.account-update-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Flash Messages */
+.notice, .success {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.notice {
+  background-color: #fff3cd;
+  color: #856404;
+  border-left: 4px solid #ffeeba;
+}
+
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border-left: 4px solid #c3e6cb;
+}
+
+/* Error Messages */
+.errors {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+  border-left: 4px solid #f5c6cb;
+}
+
+.errors li {
+  margin: 0.5rem 0;
+  list-style-type: none;
+}
+
+/* Form Sections */
+section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+section:last-child {
+  border-bottom: none;
+}
+
+h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Form Elements */
+.form-row {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+input[type="hidden"] {
+  display: none;
+}
+
+/* Buttons */
+button[type="submit"] {
+  background-color: #4299e1;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #3182ce;
+}
+
+/* Password Requirements Note */
+section p {
+  color: #4a5568;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .account-update-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}
+
+
+/* Inventory Management Container */
+.management-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.management-container h1 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 0.5rem;
+}
+
+.management-container h2 {
+  color: #2c3e50;
+  margin: 2rem 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Action Buttons */
+.management-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #4299e1;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #3182ce;
+}
+
+/* Classification Select Dropdown */
+#classificationList {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #f8fafc;
+}
+
+/* Inventory Table */
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#inventoryDisplay thead {
+  background-color: #2c3e50;
+  color: white;
+}
+
+#inventoryDisplay th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+#inventoryDisplay tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s ease;
+}
+
+#inventoryDisplay tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+#inventoryDisplay td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+/* Action Links in Table */
+#inventoryDisplay a {
+  color: #4299e1;
+  text-decoration: none;
+  margin-right: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+#inventoryDisplay a:hover {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+/* No JavaScript Notice */
+.notice {
+  padding: 1rem;
+  background-color: #fff3cd;
+  color: #856404;
+  border-left: 4px solid #ffeeba;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .management-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  #inventoryDisplay {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .management-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Header Styles */
+#top-header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.siteName a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.siteName a:hover {
+  color: #4299e1;
+}
+
+#tools {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+#tools a, #tools span {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+#tools a:hover {
+  color: #4299e1;
+}
+
+#tools span {
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #top-header {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  #tools {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  #tools a {
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+  }
+}
+
+/* Add this to create a subtle separation between header and content */
+main {
+  margin-top: 1px; /* Prevents content from touching header */
+}
+
+/* Edit Vehicle Container */
+.management-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+.management-container h1 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 0.5rem;
+}
+
+.management-container h2 {
+  color: #2c3e50;
+  margin: 2rem 0 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.management-container p {
+  color: #4a5568;
+  margin-bottom: 2rem;
+}
+
+/* Action Buttons */
+.management-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Form Layout */
+.inventory-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.inventory-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+  font-weight: 500;
+  grid-column: span 2;
+}
+
+.inventory-form input[type="text"],
+.inventory-form input[type="number"],
+.inventory-form textarea,
+.inventory-form select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  grid-column: span 2;
+}
+
+.inventory-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.inventory-form input:focus,
+.inventory-form textarea:focus,
+.inventory-form select:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+}
+
+/* Error Messages */
+.error-messages {
+  grid-column: span 2;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-radius: 4px;
+  border-left: 4px solid #f5c6cb;
+}
+
+.error-messages ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.error-messages li {
+  margin: 0.5rem 0;
+}
+
+/* Form Actions */
+.form-actions {
+  grid-column: span 2;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: flex-end;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #4299e1;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #3182ce;
+}
+
+.btn-secondary {
+  background-color: #e2e8f0;
+  color: #2d3748;
+}
+
+.btn-secondary:hover {
+  background-color: #cbd5e0;
+}
+
+.btn:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* Classification Select */
+#classificationList {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #f8fafc;
+}
+
+/* No JavaScript Notice */
+.notice {
+  padding: 1rem;
+  background-color: #fff3cd;
+  color: #856404;
+  border-left: 4px solid #ffeeba;
+  border-radius: 4px;
+  margin: 1rem 0;
+  grid-column: span 2;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .management-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .inventory-form {
+    grid-template-columns: 1fr;
+  }
+  
+  .inventory-form label,
+  .inventory-form input,
+  .inventory-form textarea,
+  .inventory-form select,
+  .error-messages,
+  .form-actions {
+    grid-column: span 1;
+  }
+  
+  .management-actions,
+  .form-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+
+
+
+/* Delete Confirmation Container */
+.delete-confirmation {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.delete-confirmation h1 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 0.5rem;
+}
+
+.delete-confirmation p {
+  color: #4a5568;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Delete Form Styles */
+.delete-confirmation form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.delete-confirmation .button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Button Styles */
+.delete-confirmation button[type="submit"] {
+  padding: 0.75rem 1.5rem;
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-confirmation button[type="submit"]:hover {
+  background-color: #c53030;
+}
+
+.delete-confirmation a {
+  padding: 0.75rem 1.5rem;
+  background-color: #e2e8f0;
+  color: #2d3748;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.delete-confirmation a:hover {
+  background-color: #cbd5e0;
+}
+
+/* Warning Message */
+.warning-message {
+  padding: 1rem;
+  background-color: #fff3cd;
+  color: #856404;
+  border-left: 4px solid #ffeeba;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .delete-confirmation {
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .delete-confirmation .button-group {
+    flex-direction: column;
+  }
+  
+  .delete-confirmation button[type="submit"],
+  .delete-confirmation a {
+    width: 100%;
+  }
+}
+
+
+/* Account Dashboard Styles */
+.account-dashboard {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.account-dashboard h2 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  border-bottom: 2px solid #eaeaea;
+  padding-bottom: 0.5rem;
+}
+
+.account-dashboard h3 {
+  color: #2c3e50;
+  margin: 2rem 0 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.account-dashboard p {
+  margin: 1rem 0;
+}
+
+/* Link Styles */
+.account-dashboard a {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #4299e1;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin: 0.5rem 0;
+}
+
+.account-dashboard a:hover {
+  background-color: #3182ce;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Admin/Employee Specific Styles */
+.admin-section {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eaeaea;
+}
+
+.admin-section h3 {
+  color: #4a5568;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .account-dashboard {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .account-dashboard a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Welcome Message Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.account-dashboard h2 {
+  animation: fadeIn 0.5s ease-out;
+}

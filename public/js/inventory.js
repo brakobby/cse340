@@ -1,52 +1,76 @@
 'use strict';
 
-// Get inventory items based on classification
-document.querySelector("#classificationList").addEventListener("change", function() {
-  const classification_id = this.value;
-  console.log(`classification_id is: ${classification_id}`);
-  
-  // Ensure this URL matches your route
-  const classIdURL = `/inv/getInventory/${classification_id}`;
-  
-  fetch(classIdURL)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log("Received data:", data);
-      buildInventoryList(data);
-    })
-    .catch(error => {
-      console.error('Fetch error:', error);
-    });
-});
+document.addEventListener("DOMContentLoaded", function () {
+  const classificationList = document.getElementById("classificationList");
+  const inventoryDisplay = document.getElementById("inventoryDisplay").querySelector("tbody");
 
-// Build inventory items into HTML table
-function buildInventoryList(data) {
-  const inventoryDisplay = document.getElementById("inventoryDisplay");
-  
-  // Clear existing table data
-  inventoryDisplay.innerHTML = '';
-  
-  // Set up table structure
-  let dataTable = '<thead>';
-  dataTable += '<tr><th>Vehicle Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>';
-  dataTable += '</thead><tbody>';
-  
-  // Add each inventory item as a row
-  data.forEach(function(element) {
-    console.log(`${element.inv_id}, ${element.inv_model}`);
-    
-    dataTable += `<tr><td>${element.inv_make} ${element.inv_model}</td>`;
-    dataTable += `<td><a href='/inv/edit/${element.inv_id}' title='Click to update'>Modify</a></td>`;
-    dataTable += `<td><a href='/inv/delete/${element.inv_id}' title='Click to delete'>Delete</a></td></tr>`;
+  if (!classificationList || !inventoryDisplay) {
+    console.error("Required elements not found in DOM");
+    return;
+  }
+
+  classificationList.addEventListener("change", function (e) {
+    e.preventDefault(); // prevent page reload
+
+    const classification_id = this.value;
+    console.log(`classification_id is: ${classification_id}`);
+
+    if (!classification_id) {
+      inventoryDisplay.innerHTML = '';
+      return;
+    }
+
+    const url = `/inv/getInventory/${classification_id}`;
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        return response.json();
+      })
+      .then(data => {
+        console.log("Received data:", data);
+        buildInventoryList(data);
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
   });
-  
-  dataTable += '</tbody>';
-  
-  // Display the contents in the view
-  inventoryDisplay.innerHTML = dataTable;
-}
+
+  function buildInventoryList(data) {
+    inventoryDisplay.innerHTML = ''; // clear existing rows
+
+    if (!data || data.length === 0) {
+      inventoryDisplay.innerHTML = `<tr><td colspan="3">No vehicles found for this classification.</td></tr>`;
+      return;
+    }
+
+    data.forEach(item => {
+      const row = document.createElement("tr");
+
+      // Vehicle name
+      const nameCell = document.createElement("td");
+      nameCell.textContent = `${item.inv_make} ${item.inv_model}`;
+      row.appendChild(nameCell);
+
+      // Modify link
+      const modifyCell = document.createElement("td");
+      const modifyLink = document.createElement("a");
+      modifyLink.href = `/inv/edit/${item.inv_id}`;
+      modifyLink.title = "Click to update";
+      modifyLink.textContent = "Modify";
+      modifyCell.appendChild(modifyLink);
+      row.appendChild(modifyCell);
+
+      // Delete link
+      const deleteCell = document.createElement("td");
+      const deleteLink = document.createElement("a");
+      deleteLink.href = `/inv/delete/${item.inv_id}`;
+      deleteLink.title = "Click to delete";
+      deleteLink.textContent = "Delete";
+      deleteCell.appendChild(deleteLink);
+      row.appendChild(deleteCell);
+
+      inventoryDisplay.appendChild(row);
+    });
+  }
+});

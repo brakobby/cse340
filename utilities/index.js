@@ -1,6 +1,7 @@
 const invModel = require("../models/inventory-model")
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+
 const Util = {}
 
 /* ************************
@@ -80,12 +81,12 @@ Util.buildDetailHTML = async function(vehicle) {
 }
 
 Util.buildClassificationList = async function (classification_id = null) {
-  // REMOVE CACHING - Force fresh database query every time
   const data = await invModel.getClassifications();
-  
+
+  // Make sure id="classificationList" is set
   let classificationList = '<select name="classification_id" id="classificationList" required>';
   classificationList += "<option value=''>Choose a Classification</option>";
-  
+
   data.rows.forEach((row) => {
     classificationList += `<option value="${row.classification_id}"`;
     if (classification_id != null && row.classification_id == classification_id) {
@@ -93,9 +94,11 @@ Util.buildClassificationList = async function (classification_id = null) {
     }
     classificationList += `>${row.classification_name}</option>`;
   });
-  
+
+  classificationList += "</select>";
   return classificationList;
 };
+
 
 Util.checkJWTToken = (req, res, next) => {
   if (req.cookies.jwt) {
@@ -109,11 +112,12 @@ Util.checkJWTToken = (req, res, next) => {
           return res.redirect("/account/login");
         }
         res.locals.accountData = accountData;
-        res.locals.loggedin = 1;
+        res.locals.loggedin = true;
         next();
       }
     );
   } else {
+    res.locals.loggedin = false;
     next();
   }
 };
@@ -129,6 +133,20 @@ Util.checkJWTToken = (req, res, next) => {
     return res.redirect("/account/login")
   }
  }
+
+ /* ****************************************
+ * Check Employee/Admin Access
+ * ************************************ */
+Util.checkEmployee = (req, res, next) => {
+  const account = res.locals.accountData; // pulled from JWT
+  if (account && (account.account_type === "Employee" || account.account_type === "Admin")) {
+    next();
+  } else {
+    req.flash("notice", "You must be logged in as Employee or Admin to view this page.");
+    return res.redirect("/account/login");
+  }
+};
+
 
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 

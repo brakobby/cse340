@@ -1,6 +1,6 @@
 <div class="management-container">
   <h1>Inventory Management</h1>
-  
+
   <div class="management-actions">
     <a href="/inv/add-classification" class="btn">Add New Classification</a>
     <a href="/inv/add-inventory" class="btn">Add New Vehicle</a>
@@ -8,14 +8,28 @@
 
   <h2>Manage Inventory</h2>
   <p>Select a classification to view inventory items:</p>
-  
+
+  <!-- classification dropdown rendered by EJS -->
   <%- classificationSelect %>
-  
-  <table id="inventoryDisplay"></table>
-  
+
+  <!-- Table where inventory items will be injected -->
+  <table id="inventoryDisplay">
+    <thead>
+      <tr>
+        <th>Vehicle Name</th>
+        <th>Modify</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Table rows will be injected here by JS -->
+    </tbody>
+  </table>
+
   <noscript>
     <p class="notice">JavaScript must be enabled to use this page.</p>
   </noscript>
-  
-  <script src="/js/inventory.js"></script>
+
+  <!-- External JS -->
+  <script src="/js/inventory.js" defer></script>
 </div>
